@@ -1,3 +1,5 @@
+import * as CryptoJS from "crypto-js";
+
 class Block{
   constructor(
     index: number,
@@ -18,11 +20,19 @@ class Block{
   public previousHash: string;
   public data: string;
   public timestamp: number;
+
+  static calculateBlockHash = (
+    index: number, 
+    previousHash: string, 
+    timestamp:number, 
+    data: string): string => CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
 }
 
 const genesisBlock1:Block = new Block(0, "20202020", "", "Hello", 123456);
 
-let blockChain: [Block] = [genesisBlock1];
-console.log(blockChain);
+let blockchain: Block[] = [genesisBlock1];
+console.log(blockchain);
+
+const getBlockchain = (): Block[] => blockchain;
 
 export {};
