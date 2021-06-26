@@ -1,0 +1,6 @@
+.yarn-integrity
+
+.env
+dist
+package-lock.json
+node_modules
